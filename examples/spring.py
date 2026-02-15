@@ -56,7 +56,7 @@ def weight_penalty(x):
         val = weight(x) 
         return val + 100000*penalty(x)
     except ZeroDivisionError:
-        return 1E99
+        return np.inf
         
 def print_result(ret, best, t0, i):
     x = _feasible(ret.x) # make sure result is _feasible

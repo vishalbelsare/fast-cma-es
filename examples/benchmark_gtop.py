@@ -13,6 +13,7 @@ from fcmaes.optimizer import de_cma
 from fcmaes.advretry import minimize
 
 import sys 
+import numpy as np
 from loguru import logger
 
 logger.remove()
@@ -20,7 +21,7 @@ logger.add(sys.stdout, format="{time:HH:mm:ss.SS} | {process} | {level} | {messa
 logger.add("log_{time}.txt", format="{time:HH:mm:ss.SS} | {process} | {level} | {message}", level="INFO")
 
 def _test_optimizer(opt, problem, num_retries = 10000, num = 1, value_limit = 100.0, 
-                    stop_val = -1E99):
+                    stop_val = -np.inf):
     logger.info("Testing coordinated retry " + opt.name +  ' ' + problem.name )
     for _ in range(num):
         ret = minimize(problem.fun, problem.bounds, value_limit, num_retries,

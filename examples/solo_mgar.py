@@ -123,13 +123,13 @@ def optimize():
         try:
             return solo_mgar.fitness(x)[0]
         except Exception as ex:
-            return 1E99
+            return np.inf
 
     def mofun(x):
         try:
             return solo_mgar.mo_fitness(x)
         except Exception as ex:
-            return np.array([1E99]*6)
+            return np.array([np.inf]*6)
 
     bounds = solo_mgar.get_bounds()
         

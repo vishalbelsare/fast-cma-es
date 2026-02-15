@@ -25,8 +25,8 @@ import multiprocessing as mp
 import ctypes as ct
 import warnings
 import time 
-from fcmaes.optimizer import Sequence, Cma_cpp, GCLDE_cpp, de_cma, dtime
-from fcmaes import advretry, retry, gcldecpp, csmacpp
+from fcmaes.optimizer import Sequence, Cma_cpp, de_cma, dtime
+from fcmaes import advretry, retry
 from fcmaes.cmaescpp import libcmalib
 
 import sys 

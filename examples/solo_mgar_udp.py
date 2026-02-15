@@ -26,7 +26,7 @@ from kepler.resonance import resonance
 from kepler.rvt import rvt_planet, rotate_vector, rvt
 from kepler.lambert import lambert_problem_multirev_ga
 
-bval = mp.RawValue(ct.c_double, 1E99)
+bval = mp.RawValue(ct.c_double, np.inf)
 
 import sys 
 from loguru import logger

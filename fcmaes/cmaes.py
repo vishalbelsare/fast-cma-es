@@ -187,7 +187,7 @@ class Cmaes(object):
         self.mu = int(self.popsize/2)
     # timing / global best value    
         if is_debug_active():
-            self.best_y = mp.RawValue(ct.c_double, 1E99)
+            self.best_y = mp.RawValue(ct.c_double, np.inf)
             self.n_evals = mp.RawValue(ct.c_long, 0)
             self.time_0 = time()
             

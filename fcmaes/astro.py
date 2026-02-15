@@ -6,6 +6,7 @@
 import sys
 import math
 import os
+import numpy as np
 import ctypes as ct
 from scipy.optimize import Bounds
 from fcmaes.decpp import libcmalib
@@ -244,7 +245,7 @@ def cassini2multi(x):
         dv = fun_c(n, array_type(*x))
     except Exception as ex:
         print(ex)
-        dv = 1E99
+        dv = np.inf
     tof = sum(x[4:9])
     launch_time = x[0] 
     return [dv, tof, launch_time]

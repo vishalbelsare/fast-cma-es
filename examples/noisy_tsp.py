@@ -82,7 +82,7 @@ class TSP:
         return f"TSP(name={self.name},evals={self.evals},iter={self.iter_num})"
 
     def optimize(self):
-        self.bestY = 1E99
+        self.bestY = np.inf
         self.bestX = []  
         return retry.minimize(self, self.bounds(), optimizer=Bite_cpp(50000,stall_criterion=3), num_retries=32)   
         #return retry.minimize(self, self.bounds(), optimizer=De_cpp(50000), num_retries=32)    
@@ -91,7 +91,7 @@ class TSP:
 
    
     def optimize_mo(self, nsga_update = True):
-        self.bestY = 1E99
+        self.bestY = np.inf
         self.bestX = []
         return modecpp.retry(self.mofun, 1, 0, self.bounds(), num_retries=320, popsize = 48, 
                   max_evaluations = 1000000, nsga_update = nsga_update, logger = logger())

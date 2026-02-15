@@ -642,7 +642,7 @@ class Cma_awm(Optimizer):
                          continuous_space=self.continuous_space,  
                          discrete_space=self.discrete_space, 
                          seed=seed, population_size=self.popsize)
-        best_y = 1E99
+        best_y = np.inf
         evals = 0
         fun = serial(fun) if (self.workers is None or self.workers <= 1) else parallel(fun, self.workers)  
         while evals < self.max_evaluations and not optimizer.should_stop():

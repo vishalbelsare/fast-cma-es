@@ -196,7 +196,7 @@ class Transfers(object):
 def optimize(fname, max_evals=200000, num_restarts=32, seq=None):
     transfers = Transfers(fname) 
     best_mined = mp.RawValue(ct.c_double, 0) 
-    best_y = mp.RawValue(ct.c_double, 1E99) 
+    best_y = mp.RawValue(ct.c_double, np.inf) 
     t0 = time.perf_counter()
     evals = mp.RawValue(ct.c_int, 0)  
     ast_num = transfers.ast_num

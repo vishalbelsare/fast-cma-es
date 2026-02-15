@@ -325,7 +325,7 @@ class MODE(object):
         self.y = np.empty((2*self.popsize, self.nobj + self.ncon))
         for i in range(self.popsize):
             self.x[i] = self._sample()
-            self.y[i] = np.array([1E99]*(self.nobj + self.ncon))
+            self.y[i] = np.array([np.inf]*(self.nobj + self.ncon))
         self.vx = self.x.copy()
         self.vp = 0
         self.ycon = None
@@ -470,7 +470,7 @@ def _filter(x, y):
     sorted = np.argsort(ym)
     x = x[sorted]
     y = y[sorted]
-    y = np.array([yi for yi in y if yi[0] < 1E99])
+    y = np.array([yi for yi in y if yi[0] < np.inf])
     x = np.array(x[:len(y)])
     return x,y
 
@@ -582,8 +582,8 @@ def crowd_dist(y): # crowd distance for 1st objective
     dsum = np.zeros(n)
     dsum += np.array(list(d) + [0]) # distance to left
     dsum += np.array([0] + list(d)) # distance to right
-    dsum[0] = 1E99 # keep borders
-    dsum[-1] = 1E99
+    dsum[0] = np.inf # keep borders
+    dsum[-1] = np.inf
     ds = np.empty(n)
     ds[si] = dsum # inverse order
     return ds

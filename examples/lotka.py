@@ -8,7 +8,7 @@
 import time, sys, warnings, math
 
 from fcmaes import retry, advretry
-from fcmaes.optimizer import de_cma, Bite_cpp, De_cpp, Cma_cpp, LDe_cpp, Minimize, dtime
+from fcmaes.optimizer import de_cma, Bite_cpp, De_cpp, Cma_cpp, Minimize, dtime
 from fcmaes.de import DE
 from fcmaes.cmaes import Cmaes
 import numpy as np

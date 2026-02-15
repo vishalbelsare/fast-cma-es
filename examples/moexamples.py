@@ -272,38 +272,46 @@ if __name__ == '__main__':
     # nsga_minimize_plot(poloni(20), '100k64')
     # nsga_minimize_plot(fonseca(20), '100k64')
         
-    minimize_plot(zdt1(20), Bite_cpp(M=16), '50k1k')
-    minimize_plot(schaffer(20), Bite_cpp(M=16), '50k1k')
-    minimize_plot(poloni(20), Bite_cpp(M=16), '50k1k', exp=1.0)
-    minimize_plot(fonseca(20), Bite_cpp(M=16), '50k1k', exp=3.0)
-     
-    minimize_plot(zdt1(20), de_cma(), '50k1k')
-    minimize_plot(schaffer(20), de_cma(), '50k1k')
-    minimize_plot(poloni(20), de_cma(), '50k1k', exp=1.0)
-    minimize_plot(fonseca(20), de_cma(), '50k1k', exp=3.0)
-         
-    minimize_plot(zdt1(20), random_search(), '50k1k')
-    minimize_plot(schaffer(20), random_search(), '50k1k')
-    minimize_plot(poloni(20), random_search(), '50k1k', exp=1.0)
-    minimize_plot(fonseca(20), random_search(), '50k1k', exp=3.0)
-     
-    minimize_plot(cassini1_mo(), de_cma(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])    
-    minimize_plot(cassini1_mo(), Bite_cpp(50000, M=16), '50k4k', num_retries=4096, value_limits=[40, 7000])
-    minimize_plot(cassini1_mo(), random_search(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])
-     
-    minimize_plot(cassini2_mo(), de_cma(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])   
-    minimize_plot(cassini2_mo(), Bite_cpp(50000, M=16), '50k4k', num_retries=4096, value_limits=[40, 7000])
-    minimize_plot(cassini2_mo(), random_search(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])
-     
-    minimize_plot(tandem_mo(), de_cma(100000), '100k10k', num_retries=10240, exp=1.0)
-    minimize_plot(tandem_mo(), Bite_cpp(100000, M=16), '100k10k', num_retries=10240, exp=1.0)
-    minimize_plot(tandem_mo(), random_search(100000), '100k10k', num_retries=10240, exp=1.0)
-    
-    nsgaII_test(zdt1(20), '_front.png')
-    nsgaII_test(schaffer(20), '_front.png')
-    nsgaII_test(poloni(20),  '_front.png')
-    nsgaII_test(fonseca(20), '_front.png')
+    # minimize_plot(zdt1(20), Bite_cpp(M=16), '50k1k')
+    # minimize_plot(schaffer(20), Bite_cpp(M=16), '50k1k')
+    # minimize_plot(poloni(20), Bite_cpp(M=16), '50k1k', exp=1.0)
+    # minimize_plot(fonseca(20), Bite_cpp(M=16), '50k1k', exp=3.0)
+    #
+    # minimize_plot(zdt1(20), de_cma(), '50k1k')
+    # minimize_plot(schaffer(20), de_cma(), '50k1k')
+    # minimize_plot(poloni(20), de_cma(), '50k1k', exp=1.0)
+    # minimize_plot(fonseca(20), de_cma(), '50k1k', exp=3.0)
+    #
+    # minimize_plot(zdt1(20), random_search(), '50k1k')
+    # minimize_plot(schaffer(20), random_search(), '50k1k')
+    # minimize_plot(poloni(20), random_search(), '50k1k', exp=1.0)
+    # minimize_plot(fonseca(20), random_search(), '50k1k', exp=3.0)
+    #
+    # minimize_plot(cassini1_mo(), de_cma(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])    
+    # minimize_plot(cassini1_mo(), Bite_cpp(50000, M=16), '50k4k', num_retries=4096, value_limits=[40, 7000])
+    # minimize_plot(cassini1_mo(), random_search(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])
+    #
+    # minimize_plot(cassini2_mo(), de_cma(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])   
+    # minimize_plot(cassini2_mo(), Bite_cpp(50000, M=16), '50k4k', num_retries=4096, value_limits=[40, 7000])
+    # minimize_plot(cassini2_mo(), random_search(50000), '50k4k', num_retries=4096, value_limits=[40, 7000])
+    #
+    # minimize_plot(tandem_mo(), de_cma(100000), '100k10k', num_retries=10240, exp=1.0)
+    # minimize_plot(tandem_mo(), Bite_cpp(100000, M=16), '100k10k', num_retries=10240, exp=1.0)
+    # minimize_plot(tandem_mo(), random_search(100000), '100k10k', num_retries=10240, exp=1.0)
+    #
+    # nsgaII_test(zdt1(20), '_front.png')
+    # nsgaII_test(schaffer(20), '_front.png')
+    # nsgaII_test(poloni(20),  '_front.png')
+    # nsgaII_test(fonseca(20), '_front.png')
 
-    adv_minimize_plot(tandem_mo(), de_cma(1500), '_smart', value_limit = 0, num_retries = 60000)
+    # adv_minimize_plot(tandem_mo(), de_cma(1500), '_smart', value_limit = 0, num_retries = 60000)
+    dim = 20
+    fit = zdt1(dim)
+    store = mode.store(dim, 2, 10000)
+    mofit = mode.wrapper(fit.fun, 2, store, interval=5000, plot=True, name='zdt1')
+
+    mode.minimize(mofit, 2, 0, fit.bounds, popsize = 32, 
+                  max_evaluations = 20000, nsga_update=True, workers=16)
+
 
       

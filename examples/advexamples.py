@@ -13,6 +13,7 @@ from fcmaes.optimizer import de_cma, de_cma_py, da_cma, Cma_cpp, De_cpp, Da_cpp,
 from fcmaes import advretry
 
 import sys 
+import numpy as np
 from loguru import logger
 
 logger.remove()
@@ -37,7 +38,7 @@ algos = [ de_cma(min_evals), da_cma(min_evals), Cma_cpp(min_evals), De_cpp(min_e
 def test_all(num_retries = 1000, num = 1):
     for problem in problems:
         for algo in algos:
-            _test_optimizer(algo, problem, num_retries, num, value_limit = 1E99) 
+            _test_optimizer(algo, problem, num_retries, num, value_limit = np.inf) 
 
 def _test_optimizer(opt, problem, num_retries = 10000, num = 1, value_limit = 100.0):
     logger.info(problem.name + ' ' + opt.name)
